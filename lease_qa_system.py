@@ -16,6 +16,29 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+def resolve_path(path):
+    """Find a document path, trying the repo root and a data/ folder.
+
+    Works whether the file sits next to this script, in a data/ folder,
+    or is given as an absolute path.
+    """
+    candidates = [
+        path,
+        os.path.join(BASE_DIR, path),
+        os.path.join(BASE_DIR, "data", os.path.basename(path)),
+        os.path.join(BASE_DIR, "data", path),
+        os.path.join("data", path),
+    ]
+    for candidate in candidates:
+        if os.path.exists(candidate):
+            return candidate
+    raise FileNotFoundError(
+        "Could not find '%s'. Looked in: %s" % (path, candidates)
+    )
+
 
 class LeaseRAG:
     def __init__(self, doc_path):
@@ -27,7 +50,7 @@ class LeaseRAG:
         self.chain = None
 
     def ingest(self):
-        doc = docx.Document(self.doc_path)
+        doc = docx.Document(resolve_path(self.doc_path))
         sections = []
         current = None
         for p in doc.paragraphs:
@@ -79,7 +102,7 @@ class LeaseRAG:
     def _ensure_llm(self):
         if self.llm is None:
             self.llm = ChatGroq(
-                api_key=os.environ.get("bot"),
+                api_key=os.environ.get("GROQ_API_KEY"),
                 model="openai/gpt-oss-20b",
             )
             prompt = ChatPromptTemplate.from_template(
