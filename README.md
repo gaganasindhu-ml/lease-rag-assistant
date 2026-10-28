@@ -86,21 +86,16 @@ The single top-1 miss was:
 ## Project Structure
 
 ```
-lease-qa/
+lease-rag-assistant/
+├── lease_qa_system.py    # full RAG pipeline (LeaseRAG class)
 ├── data/
 │   └── residential_lease_agreement.docx
-├── src/
-│   ├── ingest.py        # read docx → sections → chunks
-│   ├── index.py         # embed + store in Qdrant
-│   ├── retrieve.py      # similarity search
-│   ├── generate.py      # prompt + LLM
-│   └── pipeline.py      # RAGPipeline class tying it together
 ├── eval/
-│   └── golden_set.json  # 18 hand-written questions
-├── evaluate.py          # runs the golden set, reports accuracy
+│   └── golden_set.json
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
 ```
 
 ---
