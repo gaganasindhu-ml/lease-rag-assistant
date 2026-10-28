@@ -87,14 +87,15 @@ The single top-1 miss was:
 
 ```
 lease-rag-assistant/
-├── lease_qa_system.py    # full RAG pipeline (LeaseRAG class)
-├── data/
-│   └── residential_lease_agreement.docx
-├── eval/
-│   └── golden_set.json
+├── lease_qa_system.py     # pipeline (LeaseRAG class)
+├── streamlit_app.py       # web frontend
+├── evaluate.py            # evaluation script
+├── golden_set.json        # 22 test questions
+├── residential_lease_agreement.docx
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
 
 ```
 
