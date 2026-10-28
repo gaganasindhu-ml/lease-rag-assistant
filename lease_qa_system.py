@@ -79,7 +79,7 @@ class LeaseRAG:
     def _ensure_llm(self):
         if self.llm is None:
             self.llm = ChatGroq(
-                api_key=os.environ.get("GROQ_API_KEY"),
+                api_key=os.environ.get("bot"),
                 model="openai/gpt-oss-20b",
             )
             prompt = ChatPromptTemplate.from_template(
