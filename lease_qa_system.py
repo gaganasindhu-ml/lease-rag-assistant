@@ -124,7 +124,8 @@ Answer:"""
         )
         return self.chain.invoke({"context": context, "question": question})
 
-rag = LeaseRAG("/content/residential_lease_agreement.docx")
+rag = LeaseRAG("residential_lease_agreement.docx")
+
 rag.ingest()
 rag.chunk_sections(200)
 rag.index()
