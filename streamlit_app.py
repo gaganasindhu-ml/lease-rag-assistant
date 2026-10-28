@@ -4,7 +4,7 @@ import os
 
 import streamlit as st
 
-# Make the Streamlit secret available as an env var for LeaseRAG
+# LeaseRAG (ChatGroq) reads GROQ_API_KEY, so map the Streamlit secret "bot" to it
 os.environ["bot"] = st.secrets["bot"]
 
 from lease_qa_system import LeaseRAG  # noqa: E402
@@ -27,7 +27,12 @@ def load_rag():
     return rag
 
 
-rag = load_rag()
+# Show the real error on screen instead of Streamlit's redacted message
+try:
+    rag = load_rag()
+except Exception as e:
+    st.error(f"Failed to load the lease: {e}")
+    st.stop()
 
 question = st.text_input(
     "Your question:",
@@ -36,7 +41,11 @@ question = st.text_input(
 
 if st.button("Ask") and question:
     with st.spinner("Searching the lease..."):
-        answer = rag.ask(question)
+        try:
+            answer = rag.ask(question)
+        except Exception as e:
+            st.error(f"Could not get an answer: {e}")
+            st.stop()
     st.success(answer)
 
     with st.expander("Retrieved clauses"):
