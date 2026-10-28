@@ -1,0 +1,7 @@
+python-docx
+langchain
+langchain-huggingface
+langchain-groq
+langchain-qdrant
+qdrant-client
+sentence-transformers
