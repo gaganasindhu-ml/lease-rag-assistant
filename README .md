@@ -1,6 +1,6 @@
 # Lease Q&A Assistant
 
-**[Live Demo](https://lease-rag-assistant-rvzqedawxf8eahzqqvvaq8.streamlit.app)** · **[GitHub Repo](https://github.com/gaganasindhu-ml/lease-rag-assistant)**
+**[Live Demo](https://lease-rag-assistant-rvzqedawxf8eahzqqvvaq8.streamlit.app/)** · **[GitHub Repo](https://github.com/gaganasindhu-ml/lease-rag-assistant)**
 
 A Retrieval-Augmented Generation (RAG) system that answers questions about a residential lease agreement — grounded in the actual lease text, with the exact clause cited for every answer.
 
