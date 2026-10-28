@@ -17,7 +17,8 @@ from qdrant_client.models import VectorParams, Distance
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from google.colab import userdata
+import os
+
 
 import docx
 from langchain_core.documents import Document
@@ -93,7 +94,7 @@ class LeaseRAG:
     def _ensure_llm(self):
         if self.llm is None:
             self.llm = ChatGroq(
-                api_key=userdata.get("bot"),
+                api_key=os.environ.get("bot"),
                 model="openai/gpt-oss-20b",
             )
             prompt = ChatPromptTemplate.from_template(
