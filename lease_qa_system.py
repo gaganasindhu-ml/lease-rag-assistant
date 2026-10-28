@@ -5,6 +5,7 @@ Answers are grounded in the lease text with clause-level citations.
 """
 
 import os
+import zipfile
 
 import docx
 from langchain_core.documents import Document
@@ -33,7 +34,7 @@ def resolve_path(path):
         os.path.join("data", path),
     ]
     for candidate in candidates:
-        if os.path.exists(candidate):
+        if os.path.isfile(candidate):
             return candidate
     raise FileNotFoundError(
         "Could not find '%s'. Looked in: %s" % (path, candidates)
@@ -50,9 +51,25 @@ class LeaseRAG:
         self.chain = None
 
     def ingest(self):
-        doc = docx.Document(resolve_path(self.doc_path))
+        path = resolve_path(self.doc_path)
+
+        # A real .docx is a zip file. If it isn't, the file in the repo is
+        # broken (Git LFS pointer, empty upload, renamed file, etc.).
+        if not zipfile.is_zipfile(path):
+            with open(path, "rb") as f:
+                head = f.read(80)
+            raise ValueError(
+                f"'{path}' is not a valid .docx file "
+                f"(size={os.path.getsize(path)} bytes, starts with {head!r}). "
+                "If it starts with 'version https://git-lfs', it is a Git LFS "
+                "pointer: re-upload the real file to the repo."
+            )
+
+        doc = docx.Document(path)
         sections = []
-        current = None
+        # Text that appears before the first heading goes into "Preamble"
+        current = {"heading": "Preamble", "lines": []}
+        sections.append(current)
         for p in doc.paragraphs:
             text = p.text.strip()
             if not text:
@@ -62,8 +79,10 @@ class LeaseRAG:
                 sections.append(current)
             else:
                 current["lines"].append(text)
-        self.sections = sections
-        return sections
+
+        # Drop sections that have a heading but no body text
+        self.sections = [s for s in sections if s["lines"]]
+        return self.sections
 
     def chunk_sections(self, size=200):
         all_chunks = []
