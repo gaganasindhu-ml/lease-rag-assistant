@@ -1,10 +1,13 @@
+"""Streamlit frontend for the Lease Q&A Assistant."""
+
 import os
+
 import streamlit as st
 
-# make the Streamlit secret available as an env var for LeaseRAG
+# Make the Streamlit secret available as an env var for LeaseRAG
 os.environ["bot"] = st.secrets["bot"]
 
-from lease_qa_system import LeaseRAG
+from lease_qa_system import LeaseRAG  # noqa: E402
 
 st.set_page_config(page_title="Lease Q&A Assistant", page_icon="📄")
 
@@ -14,6 +17,7 @@ st.write(
     "Answers are grounded in the lease text, with the clause cited."
 )
 
+
 @st.cache_resource
 def load_rag():
     rag = LeaseRAG("residential_lease_agreement.docx")
@@ -21,6 +25,7 @@ def load_rag():
     rag.chunk_sections(200)
     rag.index()
     return rag
+
 
 rag = load_rag()
 
