@@ -5,7 +5,7 @@ import os
 import streamlit as st
 
 # LeaseRAG (ChatGroq) reads GROQ_API_KEY, so map the Streamlit secret "bot" to it
-os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+os.environ["GROQ_API_KEY"] = st.secrets["bot"]
 
 from lease_qa_system import LeaseRAG  # noqa: E402
 
