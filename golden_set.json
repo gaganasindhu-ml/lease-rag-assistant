@@ -1,0 +1,206 @@
+{
+  "dataset_name": "residential_lease_golden_set_v2",
+  "source_document": "residential_lease_agreement.docx",
+  "num_questions": 20,
+  "notes": "Questions with answerable=false should be refused, not guessed. Section names match the exact heading text in the document.",
+  "questions": [
+    {
+      "id": "q01",
+      "question": "How much is the monthly rent?",
+      "expected_section": "4. Rent",
+      "expected_answer": "$1,800 per month.",
+      "answerable": true,
+      "question_type": "direct_lookup",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q02",
+      "question": "When is the rent due each month?",
+      "expected_section": "4. Rent",
+      "expected_answer": "On or before the 1st day of each month, in advance.",
+      "answerable": true,
+      "question_type": "direct_lookup",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q03",
+      "question": "How much is the security deposit?",
+      "expected_section": "6. Security Deposit",
+      "expected_answer": "$2,700, paid on or before the start of the Term.",
+      "answerable": true,
+      "question_type": "direct_lookup",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q04",
+      "question": "How soon after moving out should I get my deposit back?",
+      "expected_section": "6. Security Deposit",
+      "expected_answer": "Within 30 days after moving out and returning the keys, less itemized deductions.",
+      "answerable": true,
+      "question_type": "direct_lookup",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q05",
+      "question": "How long is the lease term?",
+      "expected_section": "3. Lease Term",
+      "expected_answer": "January 1, 2026 to December 31, 2026.",
+      "answerable": true,
+      "question_type": "direct_lookup",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q06",
+      "question": "What happens when the lease term ends and nobody gives notice?",
+      "expected_section": "3. Lease Term",
+      "expected_answer": "It continues on a month-to-month basis.",
+      "answerable": true,
+      "question_type": "scenario",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q07",
+      "question": "What is the late fee if I pay rent late?",
+      "expected_section": "5. Late Fees",
+      "expected_answer": "$75 if rent is not received by the 5th day of the month.",
+      "answerable": true,
+      "question_type": "direct_lookup",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q08",
+      "question": "I still haven't paid rent after 10 days. What happens now?",
+      "expected_section": "5. Late Fees",
+      "expected_answer": "An additional fee of $10 per day applies until the rent is paid in full.",
+      "answerable": true,
+      "question_type": "scenario",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q09",
+      "question": "Who pays for water and trash collection?",
+      "expected_section": "7. Utilities and Services",
+      "expected_answer": "The Landlord pays for water, sewer, and trash collection.",
+      "answerable": true,
+      "question_type": "direct_lookup",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q10",
+      "question": "Do I have to set up the electricity account myself?",
+      "expected_section": "7. Utilities and Services",
+      "expected_answer": "Yes. The Tenant pays for electricity, gas, internet, and cable, and must place those accounts in the Tenant's name before move-in.",
+      "answerable": true,
+      "question_type": "paraphrased",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q11",
+      "question": "Can I get a dog?",
+      "expected_section": "10. Pets",
+      "expected_answer": "Only with the Landlord's prior written consent. If approved, a one-time $300 pet deposit and $25 monthly pet fee apply. Service animals are not considered pets and no fee applies.",
+      "answerable": true,
+      "question_type": "scenario",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q12",
+      "question": "Can I rent out the apartment to someone else?",
+      "expected_section": "8. Use of Premises",
+      "expected_answer": "No. The Tenant may not sublet or assign the Lease without the Landlord's written consent.",
+      "answerable": true,
+      "question_type": "paraphrased",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q13",
+      "question": "Can I operate a small business from the apartment?",
+      "expected_section": "8. Use of Premises",
+      "expected_answer": "No. No business may be operated from the Premises.",
+      "answerable": true,
+      "question_type": "scenario",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q14",
+      "question": "The heating stopped working. Who is responsible for fixing it?",
+      "expected_section": "9. Maintenance and Repairs",
+      "expected_answer": "The Landlord is responsible for repairs to plumbing, heating, electrical systems, and provided appliances, except where the damage was caused by the Tenant or the Tenant's guests.",
+      "answerable": true,
+      "question_type": "scenario",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q15",
+      "question": "Is smoking allowed in the apartment?",
+      "expected_section": "11. Smoking",
+      "expected_answer": "No. Smoking, including vaping, is prohibited inside the Premises and in all enclosed common areas.",
+      "answerable": true,
+      "question_type": "direct_lookup",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q16",
+      "question": "Can my landlord walk in without telling me?",
+      "expected_section": "12. Entry by Landlord",
+      "expected_answer": "Not normally. The Landlord must give at least 24 hours' notice, except in an emergency.",
+      "answerable": true,
+      "question_type": "scenario",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q17",
+      "question": "Can my friend stay with me for a month?",
+      "expected_section": "13. Guests and Occupancy",
+      "expected_answer": "No. A guest may stay for no more than 14 consecutive days without the Landlord's written approval.",
+      "answerable": true,
+      "question_type": "scenario",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q18",
+      "question": "Am I required to have renter's insurance?",
+      "expected_section": "14. Insurance",
+      "expected_answer": "Yes. The Tenant must carry renter's insurance with at least $100,000 of liability coverage and provide proof on request.",
+      "answerable": true,
+      "question_type": "direct_lookup",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q19",
+      "question": "How much notice do I need to give to end the lease early, and what does it cost?",
+      "expected_section": "15. Early Termination",
+      "expected_answer": "At least 60 days' written notice plus an early termination fee equal to two months' rent ($3,600). The Tenant remains responsible for rent until the termination date.",
+      "answerable": true,
+      "question_type": "multi_clause",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q20",
+      "question": "Can I paint the walls in the apartment?",
+      "expected_section": null,
+      "expected_answer": "The lease does not address painting or alterations.",
+      "answerable": false,
+      "question_type": "out_of_scope",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q21",
+      "question": "Who is responsible for pest control or extermination?",
+      "expected_section": null,
+      "expected_answer": "The lease does not address pest control.",
+      "answerable": false,
+      "question_type": "out_of_scope",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q22",
+      "question": "Is there a move-in inspection or condition report?",
+      "expected_section": null,
+      "expected_answer": "The lease does not mention a move-in inspection or condition report.",
+      "answerable": false,
+      "question_type": "out_of_scope",
+      "difficulty": "medium"
+    }
+  ]
+}
